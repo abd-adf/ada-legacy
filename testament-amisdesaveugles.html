@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legs &amp; Testament – Les Amis des Aveugles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aller:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --burgundy:      #A7120D;
+      --burgundy-dark: #870e0a;
+      --dark:          #1a1a18;
+      --muted:         #5a5a56;
+      --border:        rgba(0,0,0,.1);
+      --bg:            #f5f3f0;
+      --white:         #ffffff;
+      --max-w:         1140px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+      color: var(--dark); background: var(--white);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 32px;
+    }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { width: 178px; height: 125px; object-fit: contain; }
+    .nav-lang {
+      font-family: 'Open Sans', sans-serif; font-size: .88rem; font-weight: 700;
+      color: var(--burgundy); border: 2px solid var(--burgundy);
+      border-radius: 4px; padding: 5px 14px;
+      transition: background .15s, color .15s;
+    }
+    .nav-lang:hover { background: var(--burgundy); color: var(--white); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 680px;
+      background: #111;
+      overflow: hidden;
+    }
+    .hero-photo {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      opacity: .85;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(100deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.55) 38%, rgba(0,0,0,.1) 70%, transparent 100%);
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: var(--max-w); margin: 0 auto; width: 100%;
+      padding: 40px 32px 52px;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 40px;
+      min-height: 680px;
+    }
+    .hero-copy {
+      flex: 1;
+      padding-top: 160px;
+    }
+    .hero-headline {
+      font-family: 'Aller', sans-serif;
+      font-size: 44px;
+      font-weight: 700; line-height: 1.08;
+      text-transform: uppercase; letter-spacing: .01em;
+      margin-bottom: 24px;
+    }
+    .hero-headline .white { color: var(--white); display: block; }
+    .hero-headline .red   { color: #e63312; display: block; }
+    .hero-subline {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 26px;
+      font-weight: 400; color: var(--white); line-height: 1.4;
+    }
+
+    /* Formulaire flottant — aligné en haut à droite */
+    .hero-right {
+      background: var(--white);
+      display: flex; flex-direction: column;
+      width: 480px; min-width: 460px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,.18);
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+
+    /* Barre titre formulaire */
+    .form-header {
+      background: var(--burgundy);
+      padding: 16px 20px;
+      border-radius: 8px 8px 0 0;
+    }
+    .form-header h2 {
+      font-family: 'Aller', sans-serif;
+      font-size: 1.25rem; font-weight: 700; color: var(--white);
+      text-transform: uppercase; letter-spacing: .04em; line-height: 1.3;
+      text-align: center;
+    }
+
+    /* Formulaire */
+    .form-body { padding: 16px 20px; flex: 1; }
+
+    .field-group { margin-bottom: 8px; }
+    .field-group > label { display: none; }
+    .field-group input:not([type="radio"]),
+    .field-group select {
+      width: 100%; padding: 10px 14px;
+      border: 1px solid #bbb; border-radius: 4px;
+      font-family: 'Open Sans', sans-serif; font-size: 1rem; color: var(--dark);
+      background: var(--white); outline: none;
+      transition: border-color .15s, box-shadow .15s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .field-group input:not([type="radio"])::placeholder { color: #888; }
+    .field-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23888' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center; padding-right: 30px;
+    }
+    .field-group input:focus,
+    .field-group select:focus {
+      border-color: var(--burgundy); box-shadow: 0 0 0 3px rgba(167,18,13,.1);
+    }
+    .field-group input.error,
+    .field-group select.error { border-color: var(--burgundy); background: #fff5f5; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+    /* Choix envoi */
+    .envoi-label {
+      font-size: 1rem; font-weight: 600; color: var(--dark);
+      margin-bottom: 8px; display: block;
+    }
+    .envoi-options { display: flex; gap: 20px; position: relative; z-index: 1; }
+    .envoi-option {
+      display: flex; align-items: center; gap: 7px; cursor: pointer; font-size: 1rem;
+      position: relative; z-index: 1; user-select: none;
+    }
+    .envoi-option input[type="radio"] {
+      accent-color: var(--burgundy); width: 16px; height: 16px;
+      cursor: pointer; position: relative; z-index: 1;
+      flex-shrink: 0;
+    }
+
+    /* Bouton */
+    .btn-submit {
+      display: block; width: 100%; margin-top: 20px; position: relative; z-index: 0;
+      background: var(--burgundy); color: var(--white);
+      font-family: 'Aller', sans-serif; font-size: 1.25rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      border: none; border-radius: 999px; padding: 14px;
+      cursor: pointer; transition: background .2s, transform .15s;
+    }
+    .btn-submit:hover { background: var(--burgundy-dark); transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    /* Carte contact Inès */
+    .contact-card {
+      border-top: 1px solid var(--border);
+      padding: 24px 28px;
+      display: flex; align-items: center; gap: 24px;
+    }
+    .contact-photo {
+      width: 130px; height: 130px; min-width: 130px;
+      border-radius: 50%; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .contact-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    .contact-info { font-size: 0.95rem; line-height: 1.6; }
+    .contact-info .contact-intro {
+      font-family: 'Open Sans', sans-serif; font-size: 0.95rem;
+      color: var(--dark); line-height: 1.6; margin-bottom: 14px;
+    }
+    .contact-info .contact-intro strong {
+      font-family: 'Aller', sans-serif; font-weight: 700;
+      color: var(--burgundy); text-transform: uppercase;
+    }
+    .contact-info .contact-coords { display: flex; flex-direction: column; gap: 4px; }
+    .contact-info a {
+      color: var(--burgundy); font-weight: 700;
+      font-family: 'Aller', sans-serif; font-size: 0.95rem;
+      display: block;
+    }
+    .contact-info a:hover { text-decoration: underline; }
+
+    /* Succès */
+    .success-box {
+      display: none; padding: 32px 28px; text-align: center;
+    }
+    .success-box.visible { display: block; }
+    .success-icon {
+      width: 48px; height: 48px; background: #45A85A; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;
+    }
+    .success-icon svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .success-box h3 { font-family: 'Aller', sans-serif; font-size: 1.1rem; color: #2D6E3F; margin-bottom: 6px; }
+    .success-box p  { font-size: .95rem; color: #3F7A52; }
+
+    /* ── SECTION ADA PRÉSENTATION ── */
+    .ada-intro {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 56px 32px 48px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .ada-text {}
+    .ada-text p {
+      font-size: 1rem; color: var(--muted); line-height: 1.8;
+    }
+    .ada-text p strong {
+      font-family: 'Aller', sans-serif; font-weight: 700;
+      color: var(--burgundy); font-size: 1.3125rem;
+      display: block; margin-bottom: 8px;
+    }
+    .ada-stat {
+      background: #f0ece5;
+      border-radius: 12px;
+      padding: 28px 36px;
+      text-align: center;
+      flex-shrink: 0;
+      min-width: 220px;
+    }
+    .ada-stat-num {
+      font-family: 'Aller', sans-serif;
+      font-size: 3rem; font-weight: 700;
+      color: var(--burgundy); line-height: 1;
+      display: block; margin-bottom: 6px;
+    }
+    .ada-stat-label {
+      font-size: .95rem; color: var(--muted); line-height: 1.5;
+    }
+    .ada-stat-label strong {
+      font-family: 'Aller', sans-serif; font-weight: 700;
+      color: var(--burgundy); display: block; font-size: 1.1rem; margin-bottom: 4px;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 52px 32px 60px;
+    }
+    .faq-section h2 {
+      font-family: 'Aller', sans-serif;
+      font-size: 1.4375rem; font-weight: 700;
+      color: var(--burgundy); text-align: left;
+      margin-bottom: 12px; line-height: 1.35;
+    }
+    .faq-intro {
+      font-size: 1rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 32px; font-style: italic;
+      text-align: left;
+    }
+
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:first-of-type { border-top: 1px solid var(--border); }
+    .faq-question {
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: 18px 0;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      text-align: left;
+      font-family: 'Open Sans', sans-serif; font-size: 1rem; font-weight: 600;
+      color: var(--dark); line-height: 1.4; transition: color .15s;
+    }
+    .faq-question:hover { color: var(--burgundy); }
+    .faq-icon {
+      width: 20px; height: 20px; min-width: 20px;
+      border-radius: 50%; background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, transform .25s;
+      flex-shrink: 0;
+    }
+    .faq-icon svg { width: 9px; height: 9px; stroke: var(--muted); fill: none; stroke-width: 2.5; stroke-linecap: round; transition: stroke .15s; }
+    .faq-question:hover .faq-icon { background: #fde8e7; }
+    .faq-question:hover .faq-icon svg { stroke: var(--burgundy); }
+    .faq-question[aria-expanded="true"] .faq-icon { background: var(--burgundy); transform: rotate(45deg); }
+    .faq-question[aria-expanded="true"] .faq-icon svg { stroke: var(--white); }
+    .faq-answer { overflow: hidden; max-height: 0; transition: max-height .35s ease; }
+    .faq-answer-inner {
+      padding-bottom: 18px;
+      font-size: 1rem; line-height: 1.8; color: var(--muted);
+    }
+    .faq-answer-inner ul { padding-left: 18px; margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+    .faq-item.open .faq-answer { max-height: 400px; }
+
+    /* ── CTA SECONDAIRE ── */
+    .cta-section {
+      text-align: center;
+      padding: 52px 32px;
+      border-top: 1px solid var(--border);
+    }
+    .cta-section p {
+      font-family: 'Aller', sans-serif;
+      font-size: 23px; font-weight: 700;
+      color: var(--burgundy); margin-bottom: 6px;
+    }
+    .cta-section .cta-sub {
+      font-family: 'Aller', sans-serif;
+      font-size: 23px; font-weight: 700;
+      color: var(--burgundy); margin-bottom: 24px;
+    }
+    .btn-cta {
+      display: inline-block;
+      background: var(--burgundy); color: var(--white);
+      font-family: 'Aller', sans-serif; font-size: 1.25rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      border-radius: 999px; padding: 15px 40px;
+      transition: background .2s, transform .15s;
+    }
+    .btn-cta:hover { background: var(--burgundy-dark); transform: translateY(-1px); }
+
+    /* ── BANNER PLEINE LARGEUR ── */
+    .banner-section {
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+    }
+    .banner-section img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 38%;
+      display: block;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111;
+      padding: 48px 32px;
+    }
+    .footer-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 52px; align-items: start;
+    }
+    .footer-logo { width: 211px; height: 150px; object-fit: contain; }
+    .footer-info { color: var(--white); }
+    .footer-info h3 {
+      font-family: 'Aller', sans-serif;
+      font-size: 1.125rem; font-weight: 700; color: var(--white);
+      margin-bottom: 10px;
+    }
+    .footer-info p { font-size: 0.875rem; color: rgba(255,255,255,.7); line-height: 1.75; }
+    .footer-info p + p { margin-top: 6px; }
+
+    /* ── STICKY MOBILE ── */
+    .sticky-cta {
+      display: none; position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(255,255,255,.97); backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 12px 20px env(safe-area-inset-bottom);
+      z-index: 150;
+    }
+    .sticky-cta a {
+      display: block; background: var(--burgundy); color: var(--white);
+      font-family: 'Aller', sans-serif; font-size: .95rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em; text-align: center;
+      border-radius: 999px; padding: 13px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .hero-inner { flex-direction: column; align-items: stretch; gap: 28px; padding: 32px 24px; min-height: unset; }
+      .hero-copy { padding-top: 20px; }
+      .hero-right { width: 100%; min-width: unset; align-self: auto; }
+      .ada-intro { grid-template-columns: 1fr; gap: 28px; padding: 40px 24px; }
+      .ada-stat { min-width: unset; text-align: left; padding: 24px 28px; }
+      .faq-section { padding: 0 24px 48px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+    }
+    @media (max-width: 600px) {
+      .hero { min-height: unset; }
+      .hero-headline { font-size: 1.8rem; }
+      .form-body { padding: 14px 16px; }
+      .form-header { padding: 14px 16px; }
+      .contact-card { padding: 16px; }
+      .contact-photo { width: 90px; height: 90px; min-width: 90px; }
+      .cta-section { padding: 40px 24px; }
+      .sticky-cta { display: block; }
+      body { padding-bottom: 70px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <img class="nav-logo" src="https://adfinitas.b-cdn.net/ada/lp/testament/0-logo-amis-des-aveugl.svg" alt="Les Amis des Aveugles">
+    <a class="nav-lang" href="https://adfinitas.b-cdn.net/ada/lp/testament/nl">NL</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <img class="hero-photo" src="https://adfinitas.b-cdn.net/ada/lp/testament/0-image-header-fr.webp" alt="Personne malvoyante avec chien guide">
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+
+    <!-- GAUCHE : texte -->
+    <div class="hero-copy">
+      <h1 class="hero-headline">
+        <span class="white">LA VUE N'A PAS DE PRIX,</span>
+        <span class="red">UN CHIEN GUIDE, SI.</span>
+      </h1>
+      <p class="hero-subline">Votre héritage peut changer tant de vies.</p>
+    </div>
+
+    <!-- DROITE : formulaire flottant -->
+    <div class="hero-right">
+
+    <div class="form-header">
+      <h2>DEMANDEZ VOTRE BROCHURE LEGS</h2>
+    </div>
+
+    <div class="form-body">
+      <form id="contact-form" name="ada-legs-fr" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="ada-legs-fr">
+        <input type="text" name="bot-field" style="display:none">
+
+        <div class="field-group">
+          <select id="civilite" name="civilite" required>
+            <option value="" disabled selected>Civilité</option>
+            <option value="Madame">Madame</option>
+            <option value="Monsieur">Monsieur</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <input type="text" id="nom" name="nom" placeholder="Nom" required>
+        </div>
+
+        <div class="field-group">
+          <input type="text" id="prenom" name="prenom" placeholder="Prénom">
+        </div>
+
+        <div class="field-group">
+          <input type="text" id="adresse" name="adresse" placeholder="Adresse" required>
+        </div>
+
+        <div class="field-group">
+          <input type="text" id="cp" name="code_postal" placeholder="Code postal" required inputmode="numeric">
+        </div>
+
+        <div class="field-group">
+          <input type="text" id="ville" name="ville" placeholder="Ville" required>
+        </div>
+
+        <div class="field-group">
+          <input type="email" id="email" name="email" placeholder="Email">
+        </div>
+
+        <div class="field-group">
+          <input type="tel" id="tel" name="telephone" placeholder="Téléphone">
+        </div>
+
+        <div class="field-group" style="margin-top:8px;">
+          <span class="envoi-label">Je souhaite recevoir des informations</span>
+          <div class="envoi-options">
+            <label class="envoi-option" onclick="">
+              <input type="radio" name="envoi" value="Courrier">
+              Par courrier
+            </label>
+            <label class="envoi-option" onclick="">
+              <input type="radio" name="envoi" value="Email">
+              Par email
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submit-btn">JE VALIDE</button>
+      </form>
+
+      <div class="success-box" id="success-msg">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Thank You!</h3>
+        <p>Inès vous recontactera très prochainement.</p>
+      </div>
+    </div>
+
+    <!-- Carte contact Inès -->
+    <div class="contact-card">
+      <div class="contact-photo">
+        <img src="https://adfinitas.b-cdn.net/ada/lp/testament/0-ADA25-Legs-Depliant-.webp" alt="Inès Stievenard">
+      </div>
+      <div class="contact-info">
+        <p class="contact-intro">Contactez <strong>INÈS STIEVENARD</strong>,<br>votre interlocutrice privilégiée<br>qui saura vous conseiller ou<br>vous diriger vers le bon expert</p>
+        <div class="contact-coords">
+          <a href="tel:+3265403157">+32 65 40 31 57 / +32 472 12 17 25</a>
+          <a href="mailto:i.stievenard@amisdesaveugles.org">i.stievenard@amisdesaveugles.org</a>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- .hero-right -->
+  </div><!-- .hero-inner -->
+</section>
+
+<!-- PRÉSENTATION ADA -->
+<div class="ada-intro">
+  <div class="ada-text">
+    <p>
+      <strong>Les Amis des Aveugles</strong>
+      œuvrent depuis 140 ans pour favoriser l'insertion des personnes déficientes visuelles en leur proposant un accompagnement social, professionnel, mais aussi des chiens guides.
+    </p>
+  </div>
+  <div class="ada-stat">
+    <span class="ada-stat-num">80+</span>
+    <span class="ada-stat-label">
+      <strong>Aujourd'hui,</strong>
+      chiens guides formés et mis à disposition par les Amis des Aveugles
+    </span>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section" id="informations">
+  <h2>Faire un legs aux Amis des Aveugles : Laissez votre patrimoine entre de bonnes mains !</h2>
+  <p class="faq-intro">Dans notre brochure sur le legs et le testament nous répondons aux questions les plus fréquemment posées par nos fidèles donateurs, voici un premier extrait :</p>
+
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false">
+      Pourquoi faire un legs aux Amis des Aveugles ?
+      <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+    </button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        Faire un legs aux Amis des Aveugles, c'est soutenir une cause essentielle : l'autonomie et la qualité de vie des personnes aveugles ou malvoyantes en Belgique. Votre testament permet de financer des actions concrètes comme l'accompagnement social, l'éducation spécialisée, la sensibilisation à l'inclusion, et surtout la formation de chiens guides. Ce geste solidaire prolonge vos valeurs et a un impact direct sur la vie quotidienne des bénéficiaires.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false">
+      Peut-on léguer à une association si on a des enfants ?
+      <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+    </button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        Oui. La loi belge protège les enfants via la réserve héréditaire (la moitié du patrimoine leur revient). Vous pouvez toutefois disposer librement de l'autre moitié pour faire un legs à une association comme Les Amis des Aveugles.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false">
+      Que permet concrètement un legs aux Amis des Aveugles ?
+      <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+    </button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        Votre legs finance directement :
+        <ul>
+          <li>L'accompagnement social des personnes déficientes visuelles,</li>
+          <li>La formation et remise de chiens guides,</li>
+          <li>L'éducation spécialisée,</li>
+          <li>La sensibilisation à l'inclusion et l'accessibilité.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false">
+      Quels biens peut-on léguer à une association ?
+      <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+    </button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        Vous pouvez léguer :
+        <ul>
+          <li>De l'argent,</li>
+          <li>Des biens immobiliers (maison, appartement, terrain),</li>
+          <li>Des biens mobiliers (œuvres d'art, bijoux, actions…),</li>
+          <li>Une assurance vie.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA SECONDAIRE -->
+<div class="cta-section">
+  <p>Vous souhaitez en savoir plus ?</p>
+  <p class="cta-sub">Demandez notre brochure legs dès aujourd'hui</p>
+  <a class="btn-cta" href="#top">JE DEMANDE LE GUIDE DES LEGS</a>
+</div>
+
+<!-- BANNER PLEINE LARGEUR -->
+<div class="banner-section">
+  <img src="https://adfinitas.b-cdn.net/ada/lp/testament/banners-section.jpg" alt="">
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <img class="footer-logo" src="https://adfinitas.b-cdn.net/ada/lp/testament/0-logo-amis-des-aveugl-white.svg" alt="Les Amis des Aveugles">
+    <div class="footer-info">
+      <h3>Les Amis des Aveugles et Malvoyants ASBL</h3>
+      <p>Nous formons une communauté solidaire où chaque personne, indépendamment de sa situation de handicap, vit pleinement et contribue à la société.</p>
+      <p>+32 65 40 31 00 | <a href="mailto:info@amisdesaveugles.org" style="color:rgba(255,255,255,.7)">info@amisdesaveugles.org</a> | Rue de la Barrière 37, 7011 Mons</p>
+      <p>Du lundi au vendredi, de 8h00 à 16h00</p>
+      <p>IBAN : BE49 0017 0000 0071 | BCE : BE406.579.854</p>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE -->
+<div class="sticky-cta">
+  <a href="#top">JE DEMANDE LE GUIDE DES LEGS</a>
+</div>
+
+<script>
+  // Form
+  const form = document.getElementById('contact-form');
+  const btn  = document.getElementById('submit-btn');
+  const successMsg = document.getElementById('success-msg');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    let valid = true;
+
+    form.querySelectorAll('[required]').forEach(el => {
+      el.classList.remove('error');
+      if (!el.value.trim()) { el.classList.add('error'); valid = false; }
+    });
+    if (!form.querySelector('[name="envoi"]:checked')) valid = false;
+    if (!valid) { form.querySelector('.error')?.focus(); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        successMsg.classList.add('visible');
+      } else { throw new Error(); }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'JE VALIDE';
+      alert('Une erreur est survenue. Merci de réessayer.');
+    }
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', function() {
+      const item   = this.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
