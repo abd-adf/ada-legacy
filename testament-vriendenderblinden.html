@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Legs &amp; Testament – Les Amis des Aveugles</title>
+  <title>Legaat &amp; Testament – Vrienden der Blinden</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Aller:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -189,7 +189,7 @@
     .btn-submit:hover { background: var(--burgundy-dark); transform: translateY(-1px); }
     .btn-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
 
-    /* Carte contact Inès */
+    /* Carte contact Astrid */
     .contact-card {
       border-top: 1px solid var(--border);
       padding: 24px 28px;
@@ -231,7 +231,7 @@
     .success-box h3 { font-family: 'Aller', sans-serif; font-size: 1.1rem; color: #2D6E3F; margin-bottom: 6px; }
     .success-box p  { font-size: .95rem; color: #3F7A52; }
 
-    /* ── SECTION ADA PRÉSENTATION ── */
+    /* ── SECTION PRESENTATIE ── */
     .ada-intro {
       max-width: var(--max-w); margin: 0 auto;
       padding: 56px 32px 48px;
@@ -423,124 +423,124 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <img class="nav-logo" src="https://adfinitas.b-cdn.net/ada/lp/testament/0-logo-amis-des-aveugl.svg" alt="Les Amis des Aveugles">
-    <a class="nav-lang" href="/testament-vriendenderblinden.html">NL</a>
+    <img class="nav-logo" src="https://adfinitas.b-cdn.net/ada/lp/testament/nl/LogoNL-ASBL-700x496.png" alt="Vrienden der Blinden">
+    <a class="nav-lang" href="/testament-amisdesaveugles.html">FR</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <img class="hero-photo" src="https://adfinitas.b-cdn.net/ada/lp/testament/0-image-header-fr.webp" alt="Personne malvoyante avec chien guide">
+  <img class="hero-photo" src="https://adfinitas.b-cdn.net/ada/lp/testament/0-image-header-fr.webp" alt="Persoon met visuele beperking en geleidehond">
   <div class="hero-overlay"></div>
   <div class="hero-inner">
 
-    <!-- GAUCHE : texte -->
+    <!-- LINKS : tekst -->
     <div class="hero-copy">
       <h1 class="hero-headline">
-        <span class="white">LA VUE N'A PAS DE PRIX,</span>
-        <span class="red">UN CHIEN GUIDE, SI.</span>
+        <span class="white">OP ZIEN STAAT GEEN PRIJS,</span>
+        <span class="red">OP EEN GELEIDEHOND WEL.</span>
       </h1>
-      <p class="hero-subline">Votre héritage peut changer tant de vies.</p>
+      <p class="hero-subline">Jouw erfenis kan zoveel levens veranderen.</p>
     </div>
 
-    <!-- DROITE : formulaire flottant -->
+    <!-- RECHTS : formulier -->
     <div class="hero-right">
 
     <div class="form-header">
-      <h2>DEMANDEZ VOTRE BROCHURE LEGS</h2>
+      <h2>VRAAG JE BROCHURE OVER HET TESTAMENT AAN</h2>
     </div>
 
     <div class="form-body">
-      <form id="contact-form" name="ada-legs-fr" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-        <input type="hidden" name="form-name" value="ada-legs-fr">
+      <form id="contact-form" name="vdb-legaat-nl" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="vdb-legaat-nl">
         <input type="text" name="bot-field" style="display:none">
 
-        <!-- Choix du mode d'envoi EN PREMIER -->
+        <!-- Keuze verzendmethode EERST -->
         <div class="field-group" style="margin-bottom:12px;">
-          <span class="envoi-label">Je souhaite recevoir des informations</span>
+          <span class="envoi-label">Ik zou graag informatie ontvangen</span>
           <div class="envoi-options">
             <label class="envoi-option">
               <input type="radio" name="envoi" value="Email" id="envoi-email" required>
               <span class="envoi-box">
                 <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-                Par email
+                Via e-mail
               </span>
             </label>
             <label class="envoi-option">
-              <input type="radio" name="envoi" value="Courrier" id="envoi-post">
+              <input type="radio" name="envoi" value="Post" id="envoi-post">
               <span class="envoi-box">
                 <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                Par courrier
+                Per post
               </span>
             </label>
           </div>
         </div>
 
-        <!-- Champs communs : toujours visibles après choix -->
+        <!-- Gemeenschappelijke velden -->
         <div id="fields-common">
           <div class="field-group">
-            <select id="civilite" name="civilite" required>
-              <option value="" disabled selected>Civilité</option>
-              <option value="Madame">Madame</option>
-              <option value="Monsieur">Monsieur</option>
+            <select id="civilite" name="aanspreektitel" required>
+              <option value="" disabled selected>Aanspreektitel</option>
+              <option value="Mevrouw">Mevrouw</option>
+              <option value="Meneer">Meneer</option>
             </select>
           </div>
           <div class="field-group">
-            <input type="text" id="nom" name="nom" placeholder="Nom" required>
+            <input type="text" id="nom" name="naam" placeholder="Naam" required>
           </div>
           <div class="field-group">
-            <input type="text" id="prenom" name="prenom" placeholder="Prénom">
+            <input type="text" id="prenom" name="voornaam" placeholder="Voornaam">
           </div>
         </div>
 
-        <!-- Champs spécifiques EMAIL -->
+        <!-- Specifieke velden EMAIL -->
         <div id="fields-email">
           <div class="field-group">
-            <input type="email" id="email" name="email" placeholder="Email">
+            <input type="email" id="email" name="email" placeholder="E-mail">
           </div>
           <div class="field-group">
-            <input type="tel" id="tel" name="telephone" placeholder="Téléphone">
+            <input type="tel" id="tel" name="telefoon" placeholder="Telefoon">
           </div>
         </div>
 
-        <!-- Champs spécifiques COURRIER POSTAL -->
+        <!-- Specifieke velden POST -->
         <div id="fields-post">
           <div class="field-group">
-            <input type="text" id="adresse" name="adresse" placeholder="Adresse">
+            <input type="text" id="adresse" name="adres" placeholder="Adres">
           </div>
           <div class="field-group">
-            <input type="text" id="cp" name="code_postal" placeholder="Code postal" inputmode="numeric">
+            <input type="text" id="cp" name="postcode" placeholder="Postcode" inputmode="numeric">
           </div>
           <div class="field-group">
-            <input type="text" id="ville" name="ville" placeholder="Ville">
+            <input type="text" id="ville" name="gemeente" placeholder="Gemeente">
           </div>
           <div class="field-group">
-            <input type="tel" id="tel-post" name="telephone" placeholder="Téléphone">
+            <input type="tel" id="tel-post" name="telefoon" placeholder="Telefoon">
           </div>
         </div>
 
-        <button type="submit" class="btn-submit" id="submit-btn" style="display:none;">JE VALIDE</button>
+        <button type="submit" class="btn-submit" id="submit-btn" style="display:none;">IK BEVESTIG</button>
       </form>
 
       <div class="success-box" id="success-msg">
         <div class="success-icon">
           <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <h3>Thank You!</h3>
-        <p>Inès vous recontactera très prochainement.</p>
+        <h3>Dank je wel!</h3>
+        <p>Astrid neemt zeer binnenkort contact met je op.</p>
       </div>
     </div>
 
-    <!-- Carte contact Inès -->
+    <!-- Contactkaart Astrid -->
     <div class="contact-card">
       <div class="contact-photo">
-        <img src="https://adfinitas.b-cdn.net/ada/lp/testament/0-ADA25-Legs-Depliant-.webp" alt="Inès Stievenard">
+        <img src="https://adfinitas.b-cdn.net/ada/lp/testament/nl/65640441-0-Astrid-Fundlettre-1.webp" alt="Astrid Sonneville">
       </div>
       <div class="contact-info">
-        <p class="contact-intro">Contactez <strong>INÈS STIEVENARD</strong>,<br>votre interlocutrice privilégiée<br>qui saura vous conseiller ou<br>vous diriger vers le bon expert</p>
+        <p class="contact-intro">Neem contact op met <strong>ASTRID SONNEVILLE</strong>,<br>uw vaste contactpersoon die u kan adviseren of doorverwijzen naar de juiste expert</p>
         <div class="contact-coords">
-          <a href="tel:+3265403157">+32 65 40 31 57 / +32 472 12 17 25</a>
-          <a href="mailto:i.stievenard@amisdesaveugles.org">i.stievenard@amisdesaveugles.org</a>
+          <a href="tel:+3258533303">+32 58 53 33 03 / +32 479 87 22 36</a>
+          <a href="mailto:a.sonneville@vriendenderblinden.org">a.sonneville@vriendenderblinden.org</a>
         </div>
       </div>
     </div>
@@ -549,81 +549,81 @@
   </div><!-- .hero-inner -->
 </section>
 
-<!-- PRÉSENTATION ADA -->
+<!-- PRESENTATIE VDB -->
 <div class="ada-intro">
   <div class="ada-text">
     <p>
-      <strong>Les Amis des Aveugles</strong>
-      œuvrent depuis 140 ans pour favoriser l'insertion des personnes déficientes visuelles en leur proposant un accompagnement social, professionnel, mais aussi des chiens guides.
+      <strong>Vrienden der Blinden</strong>
+      streeft al 140 jaar naar autonomie en integratie van personen met een visuele beperking. Dit enerzijds aan de hand van een gratis sociale dienst en anderzijds aan de hand van een opleidingscentrum voor blindengeleidehonden.
     </p>
   </div>
   <div class="ada-stats">
     <div class="ada-stat">
       <span class="ada-stat-num">85+</span>
       <span class="ada-stat-label">
-        <strong>Chiens guides</strong>
-        en activité, remis gratuitement aux bénéficiaires
+        <strong>Geleidehonden</strong>
+        in activiteit, gratis ter beschikking gesteld aan begunstigden
       </span>
     </div>
     <div class="ada-stat">
       <span class="ada-stat-num">4 000</span>
       <span class="ada-stat-label">
-        <strong>Bénéficiaires</strong>
-        accompagnés chaque année
+        <strong>Begunstigden</strong>
+        begeleid elk jaar
       </span>
     </div>
     <div class="ada-stat">
       <span class="ada-stat-num">103</span>
       <span class="ada-stat-label">
-        <strong>Volontaires</strong>
-        mobilisés au quotidien
+        <strong>Vrijwilligers</strong>
+        dagelijks gemobiliseerd
       </span>
     </div>
   </div>
 </div>
 
 <!-- FAQ -->
-<div class="faq-section" id="informations">
-  <h2>Faire un legs aux Amis des Aveugles : Laissez votre patrimoine entre de bonnes mains !</h2>
-  <p class="faq-intro">Dans notre brochure sur le legs et le testament nous répondons aux questions les plus fréquemment posées par nos fidèles donateurs, voici un premier extrait :</p>
+<div class="faq-section" id="informaties">
+  <h2>Een legaat nalaten aan Vrienden der Blinden: laat je vermogen in goede handen achter!</h2>
+  <p class="faq-intro">In onze brochure over legaten en testamenten beantwoorden we de meest gestelde vragen van onze trouwe donateurs. Hieronder vind je een eerste uittreksel:</p>
 
   <div class="faq-item">
     <button class="faq-question" aria-expanded="false">
-      Pourquoi faire un legs aux Amis des Aveugles ?
+      Waarom een legaat aan Vrienden der Blinden?
       <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
     </button>
     <div class="faq-answer">
       <div class="faq-answer-inner">
-        Faire un legs aux Amis des Aveugles, c'est soutenir une cause essentielle : l'autonomie et la qualité de vie des personnes aveugles ou malvoyantes en Belgique. Votre testament permet de financer des actions concrètes comme l'accompagnement social, l'éducation spécialisée, la sensibilisation à l'inclusion, et surtout la formation de chiens guides. Ce geste solidaire prolonge vos valeurs et a un impact direct sur la vie quotidienne des bénéficiaires.
+        Een legaat nalaten aan Vrienden der Blinden betekent steun verlenen aan een essentieel doel: de autonomie en levenskwaliteit van blinden en slechtzienden in België. Met uw testament financiert u concrete acties zoals sociale begeleiding, gespecialiseerd onderwijs, sensibilisering rond inclusie en vooral de opleiding van blindengeleidehonden. Deze solidaire geste zet uw waarden voort en heeft een directe impact op het dagelijks leven van de begunstigden.
       </div>
     </div>
   </div>
 
   <div class="faq-item">
     <button class="faq-question" aria-expanded="false">
-      Peut-on léguer à une association si on a des enfants ?
+      Kan men aan een vereniging nalaten als men kinderen heeft?
       <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
     </button>
     <div class="faq-answer">
       <div class="faq-answer-inner">
-        Oui. La loi belge protège les enfants via la réserve héréditaire (la moitié du patrimoine leur revient). Vous pouvez toutefois disposer librement de l'autre moitié pour faire un legs à une association comme Les Amis des Aveugles.
+        Ja. De Belgische wet beschermt kinderen via het erfdeel (de helft van het vermogen komt hen toe). U kunt echter vrij beschikken over de andere helft om deze te schenken aan een vereniging zoals Vrienden der Blinden.
       </div>
     </div>
   </div>
 
   <div class="faq-item">
     <button class="faq-question" aria-expanded="false">
-      Que permet concrètement un legs aux Amis des Aveugles ?
+      Wat houdt een legaat aan Vrienden der Blinden concreet in?
       <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
     </button>
     <div class="faq-answer">
       <div class="faq-answer-inner">
-        Votre legs finance directement :
+        Uw legaat financiert rechtstreeks:
         <ul>
-          <li>L'accompagnement social des personnes déficientes visuelles,</li>
-          <li>La formation et remise de chiens guides,</li>
-          <li>L'éducation spécialisée,</li>
-          <li>La sensibilisation à l'inclusion et l'accessibilité.</li>
+          <li>Sociale begeleiding van mensen met een visuele beperking,</li>
+          <li>Opleiding en terbeschikkingstelling van geleidehonden,</li>
+          <li>Speciaal onderwijs,</li>
+          <li>Bewustmaking rond inclusie en toegankelijkheid.</li>
         </ul>
       </div>
     </div>
@@ -631,17 +631,17 @@
 
   <div class="faq-item">
     <button class="faq-question" aria-expanded="false">
-      Quels biens peut-on léguer à une association ?
+      Welke goederen kunnen aan een vereniging worden nagelaten?
       <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
     </button>
     <div class="faq-answer">
       <div class="faq-answer-inner">
-        Vous pouvez léguer :
+        U kunt het volgende nalaten:
         <ul>
-          <li>De l'argent,</li>
-          <li>Des biens immobiliers (maison, appartement, terrain),</li>
-          <li>Des biens mobiliers (œuvres d'art, bijoux, actions…),</li>
-          <li>Une assurance vie.</li>
+          <li>Geld,</li>
+          <li>Onroerend goed (huis, appartement, grond),</li>
+          <li>Roerende goederen (kunstwerken, juwelen, aandelen, enz.),</li>
+          <li>Een levensverzekering.</li>
         </ul>
       </div>
     </div>
@@ -650,9 +650,9 @@
 
 <!-- CTA SECONDAIRE -->
 <div class="cta-section">
-  <p>Vous souhaitez en savoir plus ?</p>
-  <p class="cta-sub">Demandez notre brochure legs dès aujourd'hui</p>
-  <a class="btn-cta" href="#top">JE DEMANDE LE GUIDE DES LEGS</a>
+  <p>Wil je meer weten?</p>
+  <p class="cta-sub">Vraag vandaag nog onze brochure over legaten aan</p>
+  <a class="btn-cta" href="#top">IK WIL DE LEGATENGIDS AANVRAGEN</a>
 </div>
 
 <!-- BANNER PLEINE LARGEUR -->
@@ -663,20 +663,20 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <img class="footer-logo" src="https://adfinitas.b-cdn.net/ada/lp/testament/0-logo-amis-des-aveugl-white.svg" alt="Les Amis des Aveugles">
+    <img class="footer-logo" src="https://adfinitas.b-cdn.net/ada/lp/testament/nl/logo_footer_nl.png" alt="Vrienden der Blinden">
     <div class="footer-info">
-      <h3>Les Amis des Aveugles et Malvoyants ASBL</h3>
-      <p>Nous formons une communauté solidaire où chaque personne, indépendamment de sa situation de handicap, vit pleinement et contribue à la société.</p>
-      <p>+32 65 40 31 00 | <a href="mailto:info@amisdesaveugles.org" style="color:rgba(255,255,255,.7)">info@amisdesaveugles.org</a> | Rue de la Barrière 37, 7011 Mons</p>
-      <p>Du lundi au vendredi, de 8h00 à 16h00</p>
-      <p>IBAN : BE49 0017 0000 0071 | BCE : BE406.579.854</p>
+      <h3>Vrienden der Blinden en Slechtzienden v.z.w.</h3>
+      <p>Wij vormen een hechte gemeenschap waarin iedereen, ongeacht zijn of haar handicap, ten volle kan leven en een bijdrage levert aan de samenleving.</p>
+      <p>+32 58 53 33 03 | <a href="mailto:a.sonneville@vriendenderblinden.org" style="color:rgba(255,255,255,.7)">a.sonneville@vriendenderblinden.org</a> | Hendrik Noterdaemestraat 1 - 8670 Koksijde</p>
+      <p>Maandag tot en met vrijdag, van 8.00 tot 16.00 uur</p>
+      <p>IBAN : BE08 2800 7787 8913 | KBO : 0406 579 854</p>
     </div>
   </div>
 </footer>
 
 <!-- STICKY MOBILE -->
 <div class="sticky-cta">
-  <a href="#top">JE DEMANDE LE GUIDE DES LEGS</a>
+  <a href="#top">IK WIL DE LEGATENGIDS AANVRAGEN</a>
 </div>
 
 <script>
@@ -736,7 +736,7 @@
     if (!valid) { form.querySelector('.error')?.focus(); return; }
 
     btn.disabled = true;
-    btn.textContent = 'Envoi en cours…';
+    btn.textContent = 'Bezig met verzenden…';
 
     try {
       const res = await fetch('/', {
@@ -750,8 +750,8 @@
       } else { throw new Error(); }
     } catch {
       btn.disabled = false;
-      btn.textContent = 'JE VALIDE';
-      alert('Une erreur est survenue. Merci de réessayer.');
+      btn.textContent = 'IK BEVESTIG';
+      alert('Er is een fout opgetreden. Probeer het opnieuw.');
     }
   });
 
