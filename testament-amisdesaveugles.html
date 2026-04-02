@@ -145,21 +145,35 @@
     .field-group select.error { border-color: var(--burgundy); background: #fff5f5; }
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
-    /* Choix envoi */
+    /* Choix envoi — style card */
     .envoi-label {
-      font-size: 1rem; font-weight: 600; color: var(--dark);
-      margin-bottom: 8px; display: block;
+      font-size: .85rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 8px; display: block;
     }
-    .envoi-options { display: flex; gap: 20px; position: relative; z-index: 1; }
-    .envoi-option {
-      display: flex; align-items: center; gap: 7px; cursor: pointer; font-size: 1rem;
-      position: relative; z-index: 1; user-select: none;
+    .envoi-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .envoi-option { cursor: pointer; user-select: none; }
+    .envoi-option input[type="radio"] { display: none; }
+    .envoi-box {
+      display: flex; align-items: center; gap: 9px;
+      padding: 12px 14px;
+      border: 1.5px solid rgba(0,0,0,.12); border-radius: 8px;
+      background: var(--bg); font-size: .95rem; font-weight: 500;
+      color: var(--dark); transition: border-color .15s, background .15s, box-shadow .15s;
+      white-space: nowrap;
     }
-    .envoi-option input[type="radio"] {
-      accent-color: var(--burgundy); width: 16px; height: 16px;
-      cursor: pointer; position: relative; z-index: 1;
-      flex-shrink: 0;
+    .envoi-box svg { width: 16px; height: 16px; stroke: var(--muted); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; transition: stroke .15s; }
+    .envoi-option:hover .envoi-box { border-color: var(--burgundy); background: #fff5f5; }
+    .envoi-option:hover .envoi-box svg { stroke: var(--burgundy); }
+    .envoi-option input:checked + .envoi-box {
+      border-color: var(--burgundy); background: #fff5f5;
+      box-shadow: 0 0 0 3px rgba(167,18,13,.1);
     }
+    .envoi-option input:checked + .envoi-box svg { stroke: var(--burgundy); }
+
+    /* Champs conditionnels */
+    #fields-common,
+    #fields-email,
+    #fields-post { display: none; }
 
     /* Bouton */
     .btn-submit {
@@ -219,13 +233,14 @@
     .ada-intro {
       max-width: var(--max-w); margin: 0 auto;
       padding: 56px 32px 48px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 40px;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
       border-bottom: 1px solid var(--border);
     }
-    .ada-text {}
+    .ada-stats {
+      display: flex; gap: 12px; align-items: stretch;
+    }
     .ada-text p {
       font-size: 1rem; color: var(--muted); line-height: 1.8;
     }
@@ -237,10 +252,9 @@
     .ada-stat {
       background: #f0ece5;
       border-radius: 12px;
-      padding: 28px 36px;
+      padding: 20px 24px;
       text-align: center;
       flex-shrink: 0;
-      min-width: 220px;
     }
     .ada-stat-num {
       font-family: 'Aller', sans-serif;
@@ -383,8 +397,9 @@
       .hero-inner { flex-direction: column; align-items: stretch; gap: 28px; padding: 32px 24px; min-height: unset; }
       .hero-copy { padding-top: 20px; }
       .hero-right { width: 100%; min-width: unset; align-self: auto; }
-      .ada-intro { grid-template-columns: 1fr; gap: 28px; padding: 40px 24px; }
-      .ada-stat { min-width: unset; text-align: left; padding: 24px 28px; }
+      .ada-intro { gap: 24px; padding: 40px 24px; }
+      .ada-stats { flex-wrap: wrap; }
+      .ada-stat { text-align: left; flex: 1; min-width: 120px; }
       .faq-section { padding: 0 24px 48px; }
       .footer-inner { grid-template-columns: 1fr; gap: 28px; }
     }
@@ -438,57 +453,71 @@
         <input type="hidden" name="form-name" value="ada-legs-fr">
         <input type="text" name="bot-field" style="display:none">
 
-        <div class="field-group">
-          <select id="civilite" name="civilite" required>
-            <option value="" disabled selected>Civilité</option>
-            <option value="Madame">Madame</option>
-            <option value="Monsieur">Monsieur</option>
-          </select>
-        </div>
-
-        <div class="field-group">
-          <input type="text" id="nom" name="nom" placeholder="Nom" required>
-        </div>
-
-        <div class="field-group">
-          <input type="text" id="prenom" name="prenom" placeholder="Prénom">
-        </div>
-
-        <div class="field-group">
-          <input type="text" id="adresse" name="adresse" placeholder="Adresse" required>
-        </div>
-
-        <div class="field-group">
-          <input type="text" id="cp" name="code_postal" placeholder="Code postal" required inputmode="numeric">
-        </div>
-
-        <div class="field-group">
-          <input type="text" id="ville" name="ville" placeholder="Ville" required>
-        </div>
-
-        <div class="field-group">
-          <input type="email" id="email" name="email" placeholder="Email">
-        </div>
-
-        <div class="field-group">
-          <input type="tel" id="tel" name="telephone" placeholder="Téléphone">
-        </div>
-
-        <div class="field-group" style="margin-top:8px;">
+        <!-- Choix du mode d'envoi EN PREMIER -->
+        <div class="field-group" style="margin-bottom:12px;">
           <span class="envoi-label">Je souhaite recevoir des informations</span>
           <div class="envoi-options">
-            <label class="envoi-option" onclick="">
-              <input type="radio" name="envoi" value="Courrier">
-              Par courrier
+            <label class="envoi-option">
+              <input type="radio" name="envoi" value="Email" id="envoi-email" required>
+              <span class="envoi-box">
+                <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+                Par email
+              </span>
             </label>
-            <label class="envoi-option" onclick="">
-              <input type="radio" name="envoi" value="Email">
-              Par email
+            <label class="envoi-option">
+              <input type="radio" name="envoi" value="Courrier" id="envoi-post">
+              <span class="envoi-box">
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Par courrier
+              </span>
             </label>
           </div>
         </div>
 
-        <button type="submit" class="btn-submit" id="submit-btn">JE VALIDE</button>
+        <!-- Champs communs : toujours visibles après choix -->
+        <div id="fields-common">
+          <div class="field-group">
+            <select id="civilite" name="civilite" required>
+              <option value="" disabled selected>Civilité</option>
+              <option value="Madame">Madame</option>
+              <option value="Monsieur">Monsieur</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <input type="text" id="nom" name="nom" placeholder="Nom" required>
+          </div>
+          <div class="field-group">
+            <input type="text" id="prenom" name="prenom" placeholder="Prénom">
+          </div>
+        </div>
+
+        <!-- Champs spécifiques EMAIL -->
+        <div id="fields-email">
+          <div class="field-group">
+            <input type="email" id="email" name="email" placeholder="Email">
+          </div>
+          <div class="field-group">
+            <input type="tel" id="tel" name="telephone" placeholder="Téléphone">
+          </div>
+        </div>
+
+        <!-- Champs spécifiques COURRIER POSTAL -->
+        <div id="fields-post">
+          <div class="field-group">
+            <input type="text" id="adresse" name="adresse" placeholder="Adresse">
+          </div>
+          <div class="field-group">
+            <input type="text" id="cp" name="code_postal" placeholder="Code postal" inputmode="numeric">
+          </div>
+          <div class="field-group">
+            <input type="text" id="ville" name="ville" placeholder="Ville">
+          </div>
+          <div class="field-group">
+            <input type="tel" id="tel-post" name="telephone" placeholder="Téléphone">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submit-btn" style="display:none;">JE VALIDE</button>
       </form>
 
       <div class="success-box" id="success-msg">
@@ -526,12 +555,28 @@
       œuvrent depuis 140 ans pour favoriser l'insertion des personnes déficientes visuelles en leur proposant un accompagnement social, professionnel, mais aussi des chiens guides.
     </p>
   </div>
-  <div class="ada-stat">
-    <span class="ada-stat-num">80+</span>
-    <span class="ada-stat-label">
-      <strong>Aujourd'hui,</strong>
-      chiens guides formés et mis à disposition par les Amis des Aveugles
-    </span>
+  <div class="ada-stats">
+    <div class="ada-stat">
+      <span class="ada-stat-num">85+</span>
+      <span class="ada-stat-label">
+        <strong>Chiens guides</strong>
+        en activité, remis gratuitement aux bénéficiaires
+      </span>
+    </div>
+    <div class="ada-stat">
+      <span class="ada-stat-num">4 000</span>
+      <span class="ada-stat-label">
+        <strong>Bénéficiaires</strong>
+        accompagnés chaque année
+      </span>
+    </div>
+    <div class="ada-stat">
+      <span class="ada-stat-num">103</span>
+      <span class="ada-stat-label">
+        <strong>Volontaires</strong>
+        mobilisés au quotidien
+      </span>
+    </div>
   </div>
 </div>
 
@@ -633,7 +678,46 @@
 </div>
 
 <script>
-  // Form
+  // Logique formulaire dynamique
+  const envoiRadios  = document.querySelectorAll('input[name="envoi"]');
+  const fieldsCommon = document.getElementById('fields-common');
+  const fieldsEmail  = document.getElementById('fields-email');
+  const fieldsPost   = document.getElementById('fields-post');
+  const submitBtn    = document.getElementById('submit-btn');
+
+  const emailInput   = document.getElementById('email');
+  const adresseInput = document.getElementById('adresse');
+  const cpInput      = document.getElementById('cp');
+  const villeInput   = document.getElementById('ville');
+
+  function toggleFields(mode) {
+    fieldsCommon.style.display = 'block';
+    submitBtn.style.display    = 'block';
+
+    if (mode === 'Email') {
+      fieldsEmail.style.display = 'block';
+      fieldsPost.style.display  = 'none';
+      emailInput.required   = true;
+      adresseInput.required = false;
+      cpInput.required      = false;
+      villeInput.required   = false;
+    } else {
+      fieldsEmail.style.display = 'none';
+      fieldsPost.style.display  = 'block';
+      emailInput.required   = false;
+      adresseInput.required = true;
+      cpInput.required      = true;
+      villeInput.required   = true;
+    }
+  }
+
+  envoiRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+      toggleFields(this.value);
+    });
+  });
+
+  // Form submit
   const form = document.getElementById('contact-form');
   const btn  = document.getElementById('submit-btn');
   const successMsg = document.getElementById('success-msg');
