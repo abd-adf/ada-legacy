@@ -750,7 +750,7 @@
     btn.textContent = 'Bezig met verzenden…';
 
     try {
-      const res = await fetch('/', {
+      const res = await fetch('/testament-vriendenderblinden.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(new FormData(form)).toString()
