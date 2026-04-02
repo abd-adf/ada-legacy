@@ -758,6 +758,8 @@
       if (res.ok) {
         form.style.display = 'none';
         successMsg.classList.add('visible');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'form_submit' });
       } else { throw new Error(); }
     } catch {
       btn.disabled = false;
