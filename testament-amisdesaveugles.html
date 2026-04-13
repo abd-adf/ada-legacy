@@ -409,6 +409,8 @@
       border-radius: 999px; padding: 13px;
     }
 
+    .hero-wrapper-spacer { display: block; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 960px) {
       .hero-inner { padding: 32px 24px 32px; min-height: 280px; }
@@ -579,6 +581,7 @@
 
   </div><!-- #form-block -->
 
+  <div class="hero-wrapper-spacer" id="hero-spacer"></div>
 </div><!-- .hero-wrapper -->
 
 <!-- PRÉSENTATION ADA -->
@@ -712,6 +715,20 @@
 </div>
 
 <script>
+  function adjustHeroSpacer() {
+    const formBlock = document.getElementById('form-block');
+    const spacer    = document.getElementById('hero-spacer');
+    if (!formBlock || !spacer) return;
+    if (window.innerWidth > 960) {
+      const formBottom = formBlock.getBoundingClientRect().bottom + window.scrollY;
+      const heroBottom = formBlock.closest('.hero-wrapper').querySelector('.hero').getBoundingClientRect().bottom + window.scrollY;
+      const overflow   = formBottom - heroBottom;
+      spacer.style.height = overflow > 0 ? overflow + 24 + 'px' : '0';
+    } else {
+      spacer.style.height = '0';
+    }
+  }
+
   // Logique formulaire dynamique
   const envoiRadios  = document.querySelectorAll('input[name="envoi"]');
   const fieldsCommon = document.getElementById('fields-common');
@@ -748,11 +765,14 @@
   envoiRadios.forEach(radio => {
     radio.addEventListener('change', function() {
       toggleFields(this.value);
+      adjustHeroSpacer();
     });
   });
 
   // Initialiser avec "Courrier" pré-sélectionné
   toggleFields('Courrier');
+  adjustHeroSpacer();
+  window.addEventListener('resize', adjustHeroSpacer);
 
   // Form submit
   const form = document.getElementById('contact-form');
