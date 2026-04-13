@@ -77,12 +77,10 @@
       position: relative; z-index: 1;
       max-width: var(--max-w); margin: 0 auto; width: 100%;
       padding: 40px 32px 52px;
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 40px;
       min-height: 680px;
     }
     .hero-copy {
-      flex: 1;
+      max-width: 540px;
       padding-top: 160px;
     }
     .hero-headline {
@@ -102,7 +100,12 @@
       text-shadow: 0 1px 8px rgba(0,0,0,.5);
     }
 
-    /* Formulaire flottant — aligné en haut à droite */
+    /* Wrapper hero + formulaire */
+    .hero-wrapper {
+      position: relative;
+    }
+
+    /* Formulaire flottant — positionné en absolu dans .hero-wrapper sur desktop */
     .hero-right {
       background: var(--white);
       display: flex; flex-direction: column;
@@ -110,8 +113,13 @@
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 4px 20px rgba(0,0,0,.18);
-      flex-shrink: 0;
-      align-self: flex-start;
+      position: absolute;
+      top: 40px;
+      right: calc((100% - var(--max-w)) / 2 + 32px);
+      z-index: 2;
+    }
+    @media (max-width: 1200px) {
+      .hero-right { right: 32px; }
     }
 
     /* Barre titre formulaire */
@@ -403,9 +411,15 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 960px) {
-      .hero-inner { flex-direction: column; align-items: stretch; gap: 28px; padding: 32px 24px; min-height: unset; }
+      .hero-inner { padding: 32px 24px 32px; min-height: 280px; }
       .hero-copy { padding-top: 20px; }
-      .hero-right { width: 100%; min-width: unset; align-self: auto; }
+      .hero-right {
+        position: static;
+        width: 100%; min-width: unset;
+        border-radius: 0;
+        box-shadow: 0 4px 20px rgba(0,0,0,.12);
+      }
+      .hero-wrapper { padding-bottom: 0; } /* le formulaire est dans le flux */
       .ada-intro { gap: 24px; padding: 40px 24px; }
       .ada-stats { flex-wrap: wrap; }
       .ada-stat { text-align: left; flex: 1; min-width: 120px; }
@@ -413,7 +427,8 @@
       .footer-inner { grid-template-columns: 1fr; gap: 28px; }
     }
     @media (max-width: 600px) {
-      .hero { min-height: unset; }
+      .hero { min-height: 200px; }
+      .hero-inner { padding: 24px 24px 28px; }
       .hero-headline { font-size: 1.8rem; }
       .form-body { padding: 14px 16px; }
       .form-header { padding: 14px 16px; }
@@ -435,9 +450,12 @@
 <nav class="nav">
   <div class="nav-inner">
     <img class="nav-logo" src="https://adfinitas.b-cdn.net/ada/lp/testament/0-logo-amis-des-aveugl.svg" alt="Les Amis des Aveugles">
-    <a class="nav-lang" href="https://vdb-testament.netlify.app">NL</a>
+    <a class="nav-lang" href="http://testament.vriendenderblinden.org/">NL</a>
   </div>
 </nav>
+
+<!-- HERO WRAPPER -->
+<div class="hero-wrapper">
 
 <!-- HERO -->
 <section class="hero" id="top">
@@ -454,8 +472,11 @@
       <p class="hero-subline">Votre héritage peut changer tant de vies.</p>
     </div>
 
-    <!-- DROITE : formulaire flottant -->
-    <div class="hero-right">
+  </div><!-- .hero-inner -->
+</section>
+
+<!-- FORMULAIRE — positionné en absolu dans .hero-wrapper sur desktop, flux normal sur mobile -->
+<div class="hero-right" id="form-block">
 
     <div class="form-header">
       <h2>DEMANDEZ VOTRE BROCHURE LEGS</h2>
@@ -478,7 +499,7 @@
               </span>
             </label>
             <label class="envoi-option">
-              <input type="radio" name="envoi" value="Courrier" id="envoi-post">
+              <input type="radio" name="envoi" value="Courrier" id="envoi-post" checked>
               <span class="envoi-box">
                 <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                 Par courrier
@@ -556,9 +577,9 @@
       </div>
     </div>
 
-    </div><!-- .hero-right -->
-  </div><!-- .hero-inner -->
-</section>
+  </div><!-- #form-block -->
+
+</div><!-- .hero-wrapper -->
 
 <!-- PRÉSENTATION ADA -->
 <div class="ada-intro">
@@ -729,6 +750,9 @@
       toggleFields(this.value);
     });
   });
+
+  // Initialiser avec "Courrier" pré-sélectionné
+  toggleFields('Courrier');
 
   // Form submit
   const form = document.getElementById('contact-form');
