@@ -26,3 +26,26 @@ https://ton-site.com/ma-landing/?utm_source=email&utm_medium=newsletter&utm_cont
 ```
 
 Les valeurs apparaissent ensuite dans l'export CSV de Netlify Forms.
+
+---
+
+## Champs du formulaire Netlify (ada-legs-fr)
+
+| `name` | Type | Notes |
+|---|---|---|
+| `form-name` | hidden | valeur fixe `ada-legs-fr` |
+| `bot-field` | text (caché) | honeypot anti-spam |
+| `utm_source` | hidden | UTM tracking |
+| `utm_medium` | hidden | UTM tracking |
+| `utm_content` | hidden | UTM tracking |
+| `envoi` | radio | `Email` ou `Courrier` |
+| `civilite` | select | `Madame` / `Monsieur` |
+| `nom` | text | requis |
+| `prenom` | text | |
+| `telephone` | tel | champ commun aux deux modes |
+| `email` | email | visible si mode Email |
+| `adresse` | text | visible si mode Courrier |
+| `code_postal` | text | visible si mode Courrier |
+| `ville` | text | visible si mode Courrier |
+
+> Le champ `telephone` est unique et placé dans `fields-common` pour éviter le doublon qui causait un tableau `["valeur", ""]` dans l'export CSV.
